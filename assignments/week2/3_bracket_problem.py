@@ -20,3 +20,4 @@ def checkBrackets(string):
 
 print(checkBrackets("((<>))"))
 print(checkBrackets("([)]"))
+print(checkBrackets("lol"))
