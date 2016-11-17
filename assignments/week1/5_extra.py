@@ -5,8 +5,8 @@ def next_las_seq(x):
     counter = 1
     lastNumber = x[0]
     if l > 1:
-        for i in range(1, l):
-            if lastNumber == x[i]:
+        for i in x[1:]:
+            if lastNumber == i:
                 # print("ouwe")
                 counter += 1
             else:
@@ -14,7 +14,7 @@ def next_las_seq(x):
                 result.append(counter)
                 result.append(lastNumber)
                 counter = 1
-                lastNumber = x[i]
+                lastNumber = i
         result.append(counter)
         result.append(lastNumber)
 
