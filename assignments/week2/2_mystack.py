@@ -1,3 +1,4 @@
+[2_mystack.py]
 class mystack():
     stack = []
     numberOfEntries = 0
@@ -14,14 +15,14 @@ class mystack():
         self.numberOfEntries += 1
 
     def pop(self):
-        result = self.stack[0]
-        self.stack = self.stack[1:]
+        result = self.stack[-1]
+        self.stack = self.stack[:-1]
         self.numberOfEntries -= 1
         return result
 
     def peek(self, n):
-        assert 0 < n < self.numberOfEntries+1
-        return self.stack[n+1]
+        assert -1 < n < self.numberOfEntries
+        return self.stack[n]
 
     def isEmpty(self):
         return self.numberOfEntries > 0
