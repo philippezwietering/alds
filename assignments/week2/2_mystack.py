@@ -1,4 +1,3 @@
-[2_mystack.py]
 class mystack():
     stack = []
     numberOfEntries = 0
