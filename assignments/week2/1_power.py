@@ -10,15 +10,18 @@ def powerv2(a, n):
 
 def powerv3(a, n):
     assert n > 0
-
+    x = 0
     m = 1
     while n > 0:
         if n%2 == 0:
             a *= a
+            x += 1
             n /= 2
         else:
             m *= a
             n -= 1
+            x+= 1
+    print(x)
     return m
 
-print(powerv3(2, 10))
+print(powerv3(2, 10000))
