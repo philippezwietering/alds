@@ -22,7 +22,8 @@ def badqsort(a,low=None,high=None):
         swap(a,low,m)
                             # low <= i < m : a[i] < a[m]
                             # i > m              : a[i] >= a[m]
-        badqsort(a, low, m-1)
+        if m > 0:
+            badqsort(a, low, m-1)
         badqsort(a, m+1, high)
 
 def isSorted(a):
