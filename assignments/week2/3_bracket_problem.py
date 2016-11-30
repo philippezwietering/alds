@@ -15,10 +15,11 @@ def checkBrackets(string):
                 return False
             # else:
             #     stack.pop()
-        print(stack)
+        #print(stack)
     return len(stack) == 0
 
 print(checkBrackets("((<>))"))
 print(checkBrackets("([)]"))
 print(checkBrackets("(("))
-print(checkBrackets("lol"))
+print(checkBrackets("(()"))
+# print(checkBrackets("lol"))

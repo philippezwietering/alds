@@ -6,9 +6,10 @@ def intToBinString(n):
     elif n == 1:
         return "1"
     else:
-        return (intToBinString(int((n-n%2) /2 )) + str(int(n%2)))
+        return intToBinString(n//2) + str(n%2)
 
 print(intToBinString(0))
 print(intToBinString(1))
 print(intToBinString(100))
 print(intToBinString(255))
+print(intToBinString(2**100))
