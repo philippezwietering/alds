@@ -43,6 +43,25 @@ class BSTNode:
                 parent.left = BSTNode(e,None,None)
         return not found
 
+    def rinsert(self, e):
+        if self.element == None:
+            self = BSTNode(e, None, None)
+            return True
+        elif self.element < e:
+            if self.right != None:
+                return self.right.rinsert(e)
+            else:
+                self.right = BSTNode(e, None, None)
+                return True
+        elif self.element > e:
+            if self.left != None:
+                return self.left.rinsert(e)
+            else:
+                self.left = BSTNode(e, None, None)
+                return True
+        elif self.element == e:
+            return False
+
     def insertArray(self,a, low=0, high=-1):
         if len(a) == 0:
             return
@@ -91,10 +110,10 @@ class BSTNode:
     def rsearch(self, e):
         if self.element == e:
             return self
-        elif self.right != None:
+        elif self.right != None and self.right.rsearch(e) != None:
             if self.right.rsearch(e).element == e:
                 return self.right.rsearch(e)
-        elif self.left != None:
+        elif self.left != None and self.left.rsearch(e) != None:
             if self.left.rsearch(e).element == e:
                 return self.left.rsearch(e)
         else:
@@ -208,6 +227,16 @@ class BST:
         else:
             return False
 
+    def rinsert(self, e):
+        if e:
+            if self.root:
+                return self.root.rinsert(e)
+            else:
+                self.root = BSTNode(e, None, None)
+                return True
+        else:
+            return False
+
     def delete(self,e):
         if self.root and e:
             if self.root.element == e:
@@ -231,38 +260,38 @@ class BST:
 if __name__ == '__main__':
     b = BST([1,2,3])
     print(b)
-    print(b.rsearch(2))
+
     print('----------------')
     b = BST([1,2,3,4])
     print(b)
-    print(b.rsearch(2))
+
     print('----------------')
     b = BST([1,2,3,4,5,6,7,8,9,10])
     print(b)
-    print(b.rsearch(2))
+
     print('----------------')
 
     b = BST([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15])
     print(b)
-    print(b.rsearch(2))
-    node = b.search(3)
+
+    node = b.rsearch(3)
     if node != None:
         print(node.element)
-    node = b.search(4)
+    node = b.rsearch(4)
     if node != None:
         print(node.element)
-    node = b.search(8)
+    node = b.rsearch(8)
     if node != None:
         print(node.element)
-    node = b.search(11)
+    node = b.rsearch(11)
     if node != None:
         print(node.element)
-    node = b.search(16)
+    node = b.rsearch(16)
     if node != None:
         print(node.element)
     b.insert(17);
     print(b)
-    print(b.rsearch(2))
+
     print('----------------')
     b.delete(14)
     print(b)
@@ -274,7 +303,7 @@ if __name__ == '__main__':
     for i in range(1,11):
         b.insert(i)
     print(b)
-    print(b.rsearch(2))
+
     print('----------------')
 
     b = BST(None)
@@ -288,18 +317,19 @@ if __name__ == '__main__':
     print('----------------')
 
     b = BST()
-    b.insert(3)
-    b.insert(2)
-    b.insert(10)
-    b.insert(11)
-    b.insert(9)
-    b.insert(6)
-    b.insert(7)
-    b.insert(8)
+    b.rinsert(3)
+    b.rinsert(2)
+    b.rinsert(10)
+    b.rinsert(11)
+    b.rinsert(9)
+    b.rinsert(6)
+    b.rinsert(7)
+    b.rinsert(8)
+    print("Recursief toevoegen is hier: ")
     print(b)
-    print(b.rsearch(2))
+
     print('----------------')
     b.delete(3)
     print(b)
-    print(b.rsearch(2))
+
     print('----------------')
