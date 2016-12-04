@@ -15,6 +15,20 @@ class BSTNode:
             s3 = self.left.__repr__(nspaces + 3)
         return s1 + s2 + s3
 
+    def showLevelOrder(self, order):
+        global levelOrderQueue
+        if self.element != None:
+            if order <= len(levelOrderQueue)-1:
+                levelOrderQueue[order].append(self.element)
+            else:
+                levelOrderQueue.append([self.element])
+            if self.right != None or self.left != None:
+                order += 1
+            if self.right != None:
+                self.right.showLevelOrder(order)
+            if self.left != None:
+                self.left.showLevelOrder(order)
+
     def insert(self,e):
         parent = self
         current = None
@@ -201,6 +215,19 @@ class BST:
         else:
             return 'null-tree'
 
+    def showLevelOrder(self):
+        if self.root == None:
+            print("null-tree")
+        else:
+            global levelOrderQueue
+            levelOrderQueue = []
+            self.root.showLevelOrder(0)
+            orde = 1
+            print(levelOrderQueue)
+            for order in levelOrderQueue:
+                print("Orde "+str(orde)+" heeft de volgende elementen: "+str(order))
+                orde += 1
+
     def max(self):
         if self.root:
             return self.root.max()
@@ -257,22 +284,27 @@ class BST:
         else:
             return False
 
+levelOrderQueue = []
 if __name__ == '__main__':
     b = BST([1,2,3])
     print(b)
+    b.showLevelOrder()
 
     print('----------------')
     b = BST([1,2,3,4])
     print(b)
+    b.showLevelOrder()
 
     print('----------------')
     b = BST([1,2,3,4,5,6,7,8,9,10])
     print(b)
+    b.showLevelOrder()
 
     print('----------------')
 
     b = BST([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15])
     print(b)
+    b.showLevelOrder()
 
     node = b.rsearch(3)
     if node != None:
