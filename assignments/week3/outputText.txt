@@ -1,0 +1,24 @@
+This is outputText.txt. Size of the dictionary is: 23
+Word: test, number of occurrences: 3.
+Word: frequentie, number of occurrences: 1.
+Word: werkt, number of occurrences: 1.
+Word: om, number of occurrences: 2.
+Word: kijken, number of occurrences: 2.
+Word: de, number of occurrences: 2.
+Word: herhalen, number of occurrences: 1.
+Word: hier, number of occurrences: 1.
+Word: behoren, number of occurrences: 1.
+Word: tabel, number of occurrences: 1.
+Word: gewerkt, number of occurrences: 1.
+Word: Daarom, number of occurrences: 1.
+Word: een, number of occurrences: 2.
+Word: te, number of occurrences: 2.
+Word: Dit, number of occurrences: 2.
+Word: of, number of occurrences: 2.
+Word: zal, number of occurrences: 1.
+Word: dingen, number of occurrences: 1.
+Word: bedoeld, number of occurrences: 1.
+Word: is, number of occurrences: 3.
+Word: naar, number of occurrences: 1.
+Word: ik, number of occurrences: 1.
+Word: bestand, number of occurrences: 2.
