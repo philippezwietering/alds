@@ -4,7 +4,7 @@ def fileToLib(filename):
         for line in file:
             for word in line.split():
                 for char in word:
-                    if char in ".?!:;,'\"":
+                    if char in ".?!:;,()'\"":
                         word = word.replace(char, '')
                 if word in dic.keys():
                     dic[word] += 1
@@ -15,24 +15,31 @@ def fileToLib(filename):
 def libToFile(filename, dic):
     assert type(dic) == dict
     with open(filename, 'w') as file:
-        file.write("This is "+filename+". Size of the dictionary is: "+str(len(dic))+"\n")
+        file.write("This is "+filename+". Number of words is: "+str(len(dic))+"\n")
         for key in dic.keys():
-            file.write("Word: "+str(key)+", number of occurrences: "+str(dic[key])+".\n")
+            file.write(str(key)+": "+str(dic[key])+"\n")
 
 class TrieNode:
     def __init__(self, element=None, occurrence=0):
         self.element = element
         self.occurrence = occurrence
 
-    def __repr__(self, n=0):
+    def __repr__(self, n=""):
         result = ""
         if self.occurrence > 0:
-            #TODO
+            result += n+": "+str(self.occurrence)+"\n"
+        if self.element != None:
+            for key in self.element:
+                result += self.element[key].__repr__(n+key)
+        return result
 
-
-
-
-            
+    def size(self):
+        result = 0
+        if self.occurrence > 0:
+            result += 1
+        if self.element != None:
+            for key in self.element:
+                result += self.element[key].size()
         return result
 
     def insert(self, e):
@@ -59,6 +66,12 @@ class Trie:
         else:
             return "null-trie"
 
+    def size(self):
+        if self.root != None:
+            return self.root.size()
+        else:
+            return 0
+
     def insert(self, e):
         if self.root:
             return self.root.insert(e)
@@ -72,23 +85,25 @@ def fileToTrie(filename):
         for line in file:
             for word in line.split():
                 for char in word:
-                    if char in ".?!:;,'\"":
+                    if char in ".?!:;,()'\"":
                         word = word.replace(char, '')
                 t.insert(word)
         return t
 
 def TrieToFile(filename, t):
     with open(filename, 'w') as file:
-        file.write("This is "+filename+".\n")
-        file.write(t)
+        file.write("This is "+filename+". Number of words is: "+str(t.size())+"\n")
+        file.write(t.__repr__())
 
 if __name__ == '__main__':
     ####################################
     #   With a dictionary
     ####################################
-    # testDict = fileToLib("inputText.txt")
-    # libToFile("outputText.txt", testDict)
+    testDict = fileToLib("inputText.txt")
+    libToFile("outputText.txt", testDict)
 
     ####################################
     #   With a trie
     ####################################
+    testTrie = fileToTrie("inputText.txt")
+    TrieToFile("trietext.txt", testTrie)
