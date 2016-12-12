@@ -11,10 +11,11 @@ class sepChainHash:
         return result
 
     def search(self, e):
-        if e in self.table[int(e%len(self.table))]:
-            return e%len(self.table)
-        else:
-            return None
+        if e != None:
+            if self.table[int(e%len(self.table))]:
+                if e in self.table[int(e%len(self.table))]:
+                    return True
+        return False
 
     def insert(self, e):
         fulliness = 0
@@ -36,11 +37,31 @@ class sepChainHash:
             self.table.append(set())
         for key in temp:
             self.table[int(e%len(self.table))].add(e)
-        # print(self.table)
+        print(self.table)
+
+    def delete(self, e):
+        deleted = False
+        if e != None:
+            if self.search(e):
+                self.table[int(e%len(self.table))] = self.table[int(e%len(self.table))].remove(e)
+                if self.table[int(e%len(self.table))] == None:
+                    self.table[int(e%len(self.table))] = set()
+                print(str(e) + " successfully removed")
+            else:
+                print(str(e)+ " not in table\n")
+        else:
+            print(str(e) + " does not exist\n")
 
 if __name__ == "__main__":
     import random
     hash = sepChainHash()
+    randlist = []
     for i in range(200):
-        hash.insert(random.uniform(0, 1000))
+        r = random.uniform(0, 1000)
+        hash.insert(r)
+        randlist.append(r)
+    print(hash)
+
+    for i in range(100):
+        hash.delete(randlist[50+i])
     print(hash)
