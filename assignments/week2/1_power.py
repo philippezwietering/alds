@@ -25,3 +25,4 @@ def powerv3(a, n):
     return m
 
 print(powerv3(2, 10000))
+#print(2**10000)
