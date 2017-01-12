@@ -84,7 +84,6 @@ show_tree_info(G)
 
 def is_connected(G):
     V = vertices(G)
-    print("Hier print Chris",G)
     BFS(G, V[0])
     V = vertices(G)
     for v in V:
@@ -211,13 +210,15 @@ def get_euler_circulation(G, s):
         dummyG[t].remove(s)
     return result + get_euler_circulation(dummyG, t)
 
-cirkelgraaf = {v[0]: [v[1],v[2]],
-               v[1]: [v[0],v[3]],
-               v[2]: [v[0],v[3]],
-               v[3]: [v[1],v[2],v[4],v[6]],
-               v[4]: [v[3],v[5],v[6],v[7]],
-               v[5]: [v[4],v[6]],
-               v[6]: [v[3],v[4],v[5],v[7]],
-               v[7]: [v[4],v[6]]}
+def make_cirkelgraaf():
+    return {v[0]: [v[1],v[2]],
+                   v[1]: [v[0],v[3]],
+                   v[2]: [v[0],v[3]],
+                   v[3]: [v[1],v[2],v[4],v[6]],
+                   v[4]: [v[3],v[5],v[6],v[7]],
+                   v[5]: [v[4],v[6]],
+                   v[6]: [v[3],v[4],v[5],v[7]],
+                   v[7]: [v[4],v[6]]}
 
-print(get_euler_circulation(cirkelgraaf, v[0]))
+for i in range(0,8):
+    print([i]+get_euler_circulation(make_cirkelgraaf(), v[i]))
